@@ -20,14 +20,22 @@ public class RoleDao {
 	//query  -> select --> read only 
 	public void insertRole(RoleBean role)
 	{
+		
 		stmt.update("insert into role (rolename) values (?)",role.getRoleName());
+	
 	}
 	
 	public List<RoleBean> getAllRoles()
 	{
-		List<RoleBean> roles = stmt.query("Select * from role", new BeanPropertyRowMapper<RoleBean>(RoleBean.class));
 		
+		List<RoleBean> roles = stmt.query("Select * from role", new BeanPropertyRowMapper<RoleBean>(RoleBean.class));
+			
 		return roles;
+	
+	}
+	
+	public void deleteRole(int roleId) {
+		stmt.update("delete from role where roleid = ?",roleId);
 	}
 	
 	
